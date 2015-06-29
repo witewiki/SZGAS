@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szgas.bsm.security.mapper.ResourcesMapper">
+	<resultMap type="Resources" id="ResourcesResultMap">
+		<id property="id" column="id"/>
+		<result property="pid" column="pid"/>
+		<result property="name" column="name"/>
+		<result property="pname" column="pname"/>
+		<result property="remark" column="remark"/>
+		<result property="ico" column="ico"/>
+		<result property="url" column="url"/>
+		<result property="enable" column="enable"/>
+		<result property="seq" column="seq"/>
+		<collection property="roles" ofType="Roles" resultMap="RolesResultMap" />
+		<collection property="resources" ofType="Resources" resultMap="CResourcesResultMap" />
+	</resultMap>
+	<resultMap type="Roles" id="RolesResultMap">
+		<id property="id" column="role_id"/>
+		<result property="name" column="role_name"/>
+	</resultMap>
+	<resultMap type="Resources" id="CResourcesResultMap">
+		<id property="id" column="sub_id"/>
+		<result property="pid" column="sub_pid"/>
+		<result property="name" column="sub_name"/>
+		<result property="remark" column="sub_remark"/>
+		<result property="ico" column="sub_ico"/>
+		<result property="url" column="sub_url"/>
+		<result property="enable" column="sub_enable"/>
+		<result property="seq" column="sub_seq"/>
+	</resultMap>
+	
+	<sql id="resourceColumns"> vr.ID, vr.PID, vr.NAME, vr.REMARK, vr.ICO, vr.URL, vr.ENABLE, vr.SEQ </sql>
+	
+	<!-- 查询资源与权限关系 -->
+	<select id="findResourcePermissions" resultType="Resources" resultMap="ResourcesResultMap">
+		select <include refid="resourceColumns"/>, sub.id as sub_pid, sub.pid as sub_pid, sub.name as sub_name, sub.remark as sub_remark, sub.ico as sub_ico, sub.url as sub_url, sub.enable as sub_enable, sub.seq as sub_seq, vrole.id as role_id, vrole.name as role_name
+		  from v_resource vr
+		 inner join v_role_resource vrr on vr.id = vrr.resource_id
+		  left join v_resource sub on vr.id = sub.pid
+		  left join v_role vrole on vrr.role_id = vrole.id
+		 order by vr.seq
+	</select>
+	
+	<!-- 查询资源, 分页 -->
+	<select id="findResourcesByPage" parameterType="Object" resultMap="ResourcesResultMap">
+		select <include refid="resourceColumns"/>, pvr.name as pname
+		  from v_resource vr
+          left join v_resource pvr on pvr.id = vr.pid
+		 where 1 = 1
+		 	<if test="name != null">
+			   and vr.name like '%'||#{name}||'%'
+		 	</if>
+		 order by vr.seq
+	</select>
+</mapper> 

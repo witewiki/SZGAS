@@ -1,0 +1,72 @@
+@charset "utf-8";
+.loginBackground{
+	background-image:url(../images/back.png)!important;
+	height: 100%;
+	width: 100%;
+}
+.loginFormBackground{
+	width: 650px;
+    height:433px;
+	background-image:url(../images/loginForm.png)!important
+}
+.staffNoLabel{
+	width: 139px;
+    height:35px;
+    margin-bottom:22px;
+	background-image:url(../images/staffNoLabel.png)!important
+}
+.confirmTitle{
+	width: 250px;
+    height:35px;
+     margin-bottom:22px;
+	background-image:url(../images/confirmTitle.png)!important
+}
+.link{
+	font-size: 14px;
+    font-family:"microsoft yahei";
+    color: #DDD;
+}
+.link:hover{
+	font-size: 14px;
+	font-family:"microsoft yahei";
+    color: #fba704;
+}
+.printTitle{
+	width: 220px;
+    height:35px;
+     margin-bottom:22px;
+	background-image:url(../images/printTitle.png)!important
+}
+.labelFont{
+	font-size: 16px;
+    font-family:"microsoft yahei";
+}
+.sub_login {
+  width: 100px;
+  height: 35px;
+  border: 0;
+  font-size: 16px;
+  font-family:"microsoft yahei";
+  color: #fff;
+  cursor: pointer;
+  text-shadow: 1px 1px 0 #c27336;
+  background-color: #F48E0D;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#ffae1a), to(#f0771d));
+  background: -webkit-linear-gradient(#ffae1a, #f0771d);
+  background: -moz-linear-gradient(#ffae1a, #f0771d);
+  background: -o-linear-gradient(#ffae1a, #f0771d);
+  background: linear-gradient(#ffae1a, #f0771d);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffae1a', endColorstr='#f0771d');
+  overflow: hidden;
+  vertical-align: middle;
+  position: relative;
+}
+.sub_login:hover {
+  background-color: #fba704;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#fba704), to(#fba704));
+  background: -webkit-linear-gradient(#fba704, #fba704);
+  background: -moz-linear-gradient(#fba704, #fba704);
+  background: -o-linear-gradient(#fba704, #fba704);
+  background: linear-gradient(#fba704, #fba704);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fba704', endColorstr='#fba704');
+}
